@@ -5,3 +5,5 @@ build
 npm-debug.log.*
 
 *.out
+
+typings

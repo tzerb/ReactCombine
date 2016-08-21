@@ -2,10 +2,11 @@
  * In this file, we create a React component
  * which incorporates components provided by Material-UI.
  */
-import React, {Component} from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import Dialog from 'material-ui/Dialog';
-import {deepOrange500} from 'material-ui/styles/colors';
+import * as React from 'react';
+import {Component} from 'react';
+import * as RaisedButton from 'material-ui/RaisedButton';
+import * as Dialog from 'material-ui/Dialog';
+// import {deepOrange500} from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -19,13 +20,16 @@ const styles = {
 };
 
 const muiTheme = getMuiTheme({
-  palette: {
-    accent1Color: deepOrange500,
-  },
+  // palette: {
+  //   accent1Color: deepOrange500,
+  // },
 });
 
-class Main extends Component {
-  constructor(props, context) {
+export interface MainProps {  }
+export interface MainState { open:boolean; }
+
+class Main extends Component<MainProps, MainState> {
+  constructor(props: MainProps, context: any) {
     super(props, context);
 
     this.handleRequestClose = this.handleRequestClose.bind(this);
@@ -67,6 +71,13 @@ class Main extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
+          
+        </div>
+      </MuiThemeProvider>
+    );
+  }
+}
+/*
           <Dialog
             open={this.state.open}
             title="Super Secret Password"
@@ -82,10 +93,6 @@ class Main extends Component {
             secondary={true}
             onTouchTap={this.handleTouchTap}
           />
-        </div>
-      </MuiThemeProvider>
-    );
-  }
-}
 
+*/
 export default Main;

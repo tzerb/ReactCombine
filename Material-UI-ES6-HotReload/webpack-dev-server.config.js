@@ -7,9 +7,11 @@ const TransferWebpackPlugin = require('transfer-webpack-plugin');
 const config = {
   // Entry points to the project
   entry: [
-    'webpack/hot/dev-server',
-    'webpack/hot/only-dev-server',
-    path.join(__dirname, '/src/app/app.js'),
+    './src/app/app.tsx'
+    
+    // 'webpack/hot/dev-server',
+    // 'webpack/hot/only-dev-server'
+    // ,    path.join(__dirname, '/src/app/app.tsx'),
   ],
   // Server Configuration options
   devServer: {
@@ -35,6 +37,10 @@ const config = {
       {from: 'www'},
     ], path.resolve(__dirname, 'src')),
   ],
+  resolve: {
+      // Add '.ts' and '.tsx' as resolvable extensions.
+      extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
+  },  
   module: {
     loaders: [
       {
@@ -45,7 +51,6 @@ const config = {
       },
             // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
             { test: /\.tsx?$/, loader: "ts-loader" }
-      
     ],
   },
 };
