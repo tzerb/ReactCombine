@@ -1,28 +1,52 @@
 module.exports = {
-    entry: "./src/index.tsx",
+    entry: getEntry(),
     output: {
-        filename: "./dist/bundle.js",
+        publicPath: 'http://localhost:8080/',
+        filename: './dist/bundle.js'
     },
-
-    // Enable sourcemaps for debugging webpack's output.
-    devtool: "source-map",
-
-    resolve: {
-        // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
-    },
-
+    devtool: 'eval',
     module: {
-        loaders: [
-            // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
-            { test: /\.tsx?$/, loader: "ts-loader" }
-        ],
-
         preLoaders: [
-            // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-            { test: /\.js$/, loader: "source-map-loader" }
+            {
+                test: /\.tsx?$/,
+                exclude: /(node_modules)/,
+                loader: 'source-map'
+            }
+        ],
+        loaders: [
+            {
+                test: /\.scss$/,
+                include: /src/,
+                loaders: [
+                    'style',
+                    'css',
+                    'autoprefixer?browsers=last 3 versions',
+                    'sass?outputStyle=expanded'
+                ]
+            },
+            {
+                test: /\.tsx?$/,
+                exclude: /(node_modules)/,
+                loaders: [
+                    'babel',                  
+                    'ts-loader'
+                ]
+            }
         ]
     },
+    resolve: {
+        extensions: ["", ".webpack.js", ".web.js", ".js", ".ts", ".tsx"]
+    }
+};
 
+function getEntry() {
+  var entry = [];
 
+  if (process.env.NODE_ENV !== 'production') { //only want hot reloading when in dev.
+        entry.push('webpack-dev-server/client?http://localhost:8080');
+        entry.push('webpack/hot/only-dev-server');
+  }
+
+  entry.push('./src/index.tsx');
+  return entry;
 };

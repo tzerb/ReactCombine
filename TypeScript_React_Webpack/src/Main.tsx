@@ -2,11 +2,12 @@ import * as React from "react";
 import {Component} from "react";
 import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
-// import {deepOrange500} from 'material-ui/styles/colors';
+import {deepOrange500} from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // import {Greeter} from './Greeter';
+import {Hello} from './components/Hello'
 
 const styles = {
   container: {
@@ -16,9 +17,9 @@ const styles = {
 };
 
 const muiTheme = getMuiTheme({
-  // palette: {
-  //   accent1Color: deepOrange500,
-  // },
+  palette: {
+    accent1Color: deepOrange500,
+  },
 });
 
 export interface MainProps {  }
@@ -77,6 +78,7 @@ class Main extends Component<MainProps, MainState> {
           </Dialog>
           <h1>Material-UI</h1>
           <h2>Example Project2</h2>
+          <Hello compiler="" framework=""/>
           <RaisedButton
             label="Super Secret Password"
             secondary={true}
