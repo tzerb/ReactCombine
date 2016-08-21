@@ -7,9 +7,12 @@
         "target": "es5",
         "jsx": "react"
     },
+    "files": [
+        "./typings/index.d.ts"
+    ],    
     "exclude": [
         "node_modules",
-        "typings/main",
+        "typings",
         "modules/**",
         "typings/main.d.ts"
     ]

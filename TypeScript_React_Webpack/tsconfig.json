@@ -11,6 +11,7 @@
         "./typings/index.d.ts",
         "./src/components/Hello.tsx",
         "./src/components/Greeter.ts",
+        "./src/Main.tsx",
         "./src/index.tsx"
     ]
 }
