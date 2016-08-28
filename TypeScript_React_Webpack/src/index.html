@@ -4,14 +4,20 @@
     <title>Waypoint Editor</title>
   </head>
   <body>
+    <button onclick="doit()">doit</button>
     <div id="app"></div>
-    
+    <script src="https://cdn.auth0.com/js/lock/10.0/lock.min.js"></script>
+    <script src="/bundle.js"></script>
     <div id="map_holder" style="height: 500px; width: 100%; display: block;">
       <div id="map_canvas" style="height: 500px; width: 100%; display: block;"></div>      
     </div>
 	  
-    <script src="./dist/bundle.js"></script>
-    
+    <script>
+      function doit()
+      {
+        alert('doit');
+      }
+    </script>
   </body>
   
 </html>

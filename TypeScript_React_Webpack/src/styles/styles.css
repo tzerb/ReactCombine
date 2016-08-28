@@ -1,0 +1,47 @@
+#app {
+  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #4d4d4d;
+}
+.container-fluid
+{
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+a {
+  color: green;
+  cursor: pointer;
+}
+
+a.active {
+  color: orange;
+  cursor: pointer; 
+}
+
+nav {
+  padding-top: 20px;
+}
+
+.well {
+  outline: 1px solid darkgray;
+  display: inline-block;
+  margin: 0.5em;    
+}
+
+.my_image_class {
+  height: 100;
+  width: 100;
+  border:2;
+  background: url('../Images/marker.png')
+}
+
+#map_canvas4
+{
+  width: 400;
+  height: 300;
+  background-color: blue;
+  border-bottom: 100px;
+  margin: 10px, 10px, 10px, 10px;
+}

@@ -14,6 +14,11 @@ module.exports = {
             }
         ],
         loaders: [
+            {test: /(\.css)$/, loaders: ['style', 'css?sourceMap']},
+            {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file"},
+            {test: /\.(woff|woff2)$/, loader: "url?prefix=font/&limit=5000"},
+            {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream"},
+            {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml"},            
             {
                 test: /\.scss$/,
                 include: /src/,
@@ -31,7 +36,8 @@ module.exports = {
                     'babel',                  
                     'ts-loader'
                 ]
-            }
+            },
+          {test: /\.(png|jpg)$/, exclude: /node_modules/, loader: "url-loader?limit=100000"}
         ]
     },
     resolve: {
@@ -47,6 +53,6 @@ function getEntry() {
         entry.push('webpack/hot/only-dev-server');
   }
 
-  entry.push('./src/index.tsx');
+  entry.push('./src/index');
   return entry;
 };

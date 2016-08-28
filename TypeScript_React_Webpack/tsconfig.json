@@ -3,15 +3,13 @@
         "outDir": "./dist/",
         "sourceMap": true,
         "noImplicitAny": true,
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,        
         "module": "es6",
         "target": "es6",
         "jsx": "react"
     },
-    "files": [
-        "./typings/index.d.ts",
-        "./src/components/Hello.tsx",
-        "./src/components/Greeter.ts",
-        "./src/Main.tsx",
-        "./src/index.tsx"
+    "exclude": [
+        "node_modules"
     ]
 }

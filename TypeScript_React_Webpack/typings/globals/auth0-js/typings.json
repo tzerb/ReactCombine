@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/ad2267039b655754ecd546dd7414abe3787538df/auth0-js/auth0-js.d.ts",
+    "raw": "registry:dt/auth0-js#0.0.0+20160817003754",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/ad2267039b655754ecd546dd7414abe3787538df/auth0-js/auth0-js.d.ts"
+  }
+}
