@@ -1,1 +1,0 @@
-// small form of the trip view page

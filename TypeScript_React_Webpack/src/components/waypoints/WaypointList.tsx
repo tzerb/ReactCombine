@@ -23,7 +23,7 @@ const WaypointList = ({waypoints, onEdit, onDelete}) => {
           </tr>
           </thead>
           <tbody>
-            {waypoints.map(waypoint =>
+            {waypoints.map((waypoint:any) =>
               <WaypointListRow key={waypoint.waypointId} waypoint={waypoint} onEdit={onEdit} onDelete={onDelete}/>
             )} 
           </tbody>
@@ -34,10 +34,10 @@ const WaypointList = ({waypoints, onEdit, onDelete}) => {
   );
 };
 
-WaypointList.propTypes = {
-  waypoints: PropTypes.array.isRequired,
-  onEdit: PropTypes.func,
-  onDelete: PropTypes.func
-};
+// WaypointList.propTypes = {
+//   waypoints: PropTypes.array.isRequired,
+//   onEdit: PropTypes.func,
+//   onDelete: PropTypes.func
+// };
 
 export default WaypointList;

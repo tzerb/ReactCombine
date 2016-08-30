@@ -38,9 +38,9 @@ const TripHeader = ({trip}) => {
 
 };
 
-TripHeader.propTypes = {
-  trip: PropTypes.object.isRequired
-};
+// TripHeader.propTypes = {
+//   trip: PropTypes.object.isRequired
+// };
 
 export default TripHeader;
 /*

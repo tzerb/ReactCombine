@@ -2,7 +2,7 @@ import ApiConfig from './ApiConfig';
 import ApiHelpers from './ApiHelpers';
 
 const pictures : any[] = [];
- 
+
 class PictureApi {
 
   static getAllPictures() {

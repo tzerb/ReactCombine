@@ -2,9 +2,9 @@ import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Alerter} from './common/Alerter';
+import {Alerter} from '../common/Alerter';
 
-import Map5 from  '../common/Map5';
+//import Map5 from  '../common/Map5';
 import LightboxView from  '../common/LightboxView';
 
 import * as tripActions from '../../actions/tripActions';
@@ -19,53 +19,73 @@ import ApiConfig from '../../api/ApiConfig';
 import ApiHelpers from '../../api/ApiHelpers';
 import TripEditPopup from './TripEditPopup';
 
-export class TripView extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+export interface TripViewProps
+{
+  trip : any;
+  params: any;
+  tripActions:any;
+  pictureActions:any;
+  waypointActions:any;
+} 
 
+export interface TripViewState
+{
+
+}
+export class TripView extends React.Component<TripViewProps, TripViewState>  {
+  constructor(props : TripViewProps, context : any) {
+    super(props, context);
+alert('TripView ctor');
     this.state = {
       trip: Object.assign({}, this.props.trip),
       errors: {},
       saving: false
     };
-    //this.onEditWaypoint = this.onEditWaypoint.bind(this);
+    this.onEditWaypoint = this.onEditWaypoint.bind(this);
     this.onDeleteWaypoint = this.onDeleteWaypoint.bind(this);
 
     this.onEditPicture = this.onEditPicture.bind(this);
     this.onDeletePicture = this.onDeletePicture.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps : TripViewProps) {
     if (this.props.trip.tripId != nextProps.trip.tripId) {
       // Necessary to populate form when existing trip is loaded directly.
       this.setState({trip: Object.assign({}, nextProps.trip)});
     }
   }
 
-  onEditPicture(picture)
+  onEditWaypoint(waypoint : any) : void
+  {
+    alert('edit waypoint-' + waypoint.waypointId);
+  }
+
+
+  onEditPicture(picture : any) : any
   {
     alert('edit picture-' + picture.pictureId);
+    return 0;
   }
-  
-  onDeletePicture(picture)
+
+  onDeletePicture(picture : any)
   {
     this.props.pictureActions.deletePicture(picture)
       .then(() => { 
               Alerter.success('Picture deleted');
             })
-            .catch(error => {
+            .catch((error:any) => {
                 Alerter.error(error);
                 //this.setState({saving: false});
             });    
   }
 
-  onDeleteWaypoint(waypoint)
+  onDeleteWaypoint(waypoint : any)
   {
     this.props.waypointActions.deleteWaypoint(waypoint)
       .then(() => { 
               Alerter.success('Waypoint deleted');
             })
-            .catch(error => {
+            .catch((error:any) => {
                 Alerter.error(error);
                 //this.setState({saving: false});
             });
@@ -88,6 +108,19 @@ export class TripView extends React.Component {
               <PictureList pictures={this.props.trip.pictures} onEdit={this.onEditPicture} onDelete={this.onDeletePicture}/>
             </div>          
           </div>
+        </div>
+      );
+    }
+    catch(ex)
+    {
+      return (<div>error in TripView</div>);
+    }
+  }
+  
+}
+
+/*
+
           {!ApiConfig.SimulateMap && 
           <div className="row">
             <div className="col-md-12">
@@ -102,38 +135,17 @@ export class TripView extends React.Component {
               <WaypointList waypoints={this.props.trip.waypoints} onEdit={this.onEditWaypoint} onDelete={this.onDeleteWaypoint}/>
             </div>
           </div>
-          }     
-        </div>
-      );
-    }
-    catch(ex)
-    {
-      return (<div>error in TripView</div>);
-    }
-  }
-  
-}
+          }  
+*/
 
-TripView.propTypes = {
-  trip: PropTypes.object.isRequired,
-  actions: PropTypes.object.isRequired,
-  waypointActions: PropTypes.object.isRequired,
-  pictureActions: PropTypes.object.isRequired
-
-};
-
-//Pull in the React Router context so router is available on this.context.router.
-TripView.contextTypes = {
-  router: PropTypes.object
-};
-
-function getTripById(trips, tripId) {
-  const trip = trips.filter(trip => trip.tripId == tripId);
+function getTripById(trips : any, tripId : any) {
+  const trip = trips.filter((trip:any) => trip.tripId == tripId);
   if (trip) return trip[0]; //since filter returns an array, have to grab the first.
   return null;
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state : any, ownProps : TripViewProps) {
+  alert('mapStateToProps');
   const tripId = ownProps.params.id; // from the path `/trip/:id`
 
   // TODO TZ - Clear these up, have a new Trip() or something like that.
@@ -148,11 +160,12 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch : any) {
+  alert('mapDispatchToProps');
   return {
-    actions: bindActionCreators(tripActions, dispatch),
-    waypointActions: bindActionCreators(waypointActions, dispatch),
-    pictureActions: bindActionCreators(pictureActions, dispatch)
+    actions: bindActionCreators(tripActions as any, dispatch),
+    waypointActions: bindActionCreators(waypointActions as any, dispatch),
+    pictureActions: bindActionCreators(pictureActions as any, dispatch)
   };
 }
 

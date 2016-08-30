@@ -7,7 +7,7 @@ const trips =
 [
   {
     "tripId": 1,
-    "title": "Trip Title",
+    "title": "Test Trip",
     "description": "07/07/2016",
     "dateTime": "2016-07-07T00:00:00",
     //"tracks": [],
