@@ -18,7 +18,7 @@ import TripView from './components/trips/TripView';//eslint-disable-line import/
 import AboutPage from './components/about/AboutPage';
 
 export default (
-  <Route path="/" component={App}>
+  <Route path="/" component={App}> 
     <IndexRoute component={HomePage}/>
     <Route path="trips" component={TripsPage}/>
     <Route path="tripview/:id" component={TripView}/>

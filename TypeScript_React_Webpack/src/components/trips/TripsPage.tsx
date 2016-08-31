@@ -9,19 +9,19 @@ import * as tripActions from '../../actions/tripActions';
 import TripList from './TripList';
 import TripEditor from './TripEditor';
 
-export interface TripPageProps
+export interface TripsPageProps
 {
     trips : any[];
     actions: any;
 }
 
-export interface TripPageState
+export interface TripsPageState
 {
     trips? : any[];
 }
 
-class TripPage extends React.Component<TripPageProps, TripPageState> {
-    constructor(props:TripPageProps, context:any)    {
+class TripsPage extends React.Component<TripsPageProps, TripsPageState> {
+    constructor(props:TripsPageProps, context:any)    {
         super(props, context);
         this.deleteTrip = this.deleteTrip.bind(this);
     }
@@ -42,8 +42,7 @@ class TripPage extends React.Component<TripPageProps, TripPageState> {
         return (
             <div>
                 <h1>Trips</h1>
-                <TripList trips={this.props.trips} onDeleteTrip={this.deleteTrip}/>
-                <Link to={'/trip'}>Add Trip</Link>
+
             </div>
         );
     }
@@ -57,18 +56,20 @@ class TripPage extends React.Component<TripPageProps, TripPageState> {
 //     actions: PropTypes.object
 // };
 
-function mapStateToProps(state : TripPageState, ownProps:TripPageProps)
-{
-    return {
-        trips: state.trips
-    };
-}
+// function mapStateToProps(state : TripPageState, ownProps:TripPageProps)
+// {
+//     return {
+//         trips: state.trips
+//     };
+// }
  
-function mapDispatchToProps(dispatch:any) {
-    return {
-        // createTrip: trip => dispatch(tripActions.createTrip(trip))
-        actions: bindActionCreators(tripActions as any, dispatch)
-    };
-}
+// function mapDispatchToProps(dispatch:any) {
+//     return {
+//         // createTrip: trip => dispatch(tripActions.createTrip(trip))
+//         actions: bindActionCreators(tripActions as any, dispatch)
+//     };
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps) (TripPage);
+// export default connect(mapStateToProps, mapDispatchToProps) (TripPage);
+
+export default TripsPage;
