@@ -42,10 +42,14 @@ catch(ex)
 
 // export interface MainProps {  }
 // export interface MainState { open:boolean; }
+function onRouterError(error : any)
+{
+  alert('onRouterError');
+}
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory} routes={routes}/>
+    <Router history={browserHistory} routes={routes} onError={onRouterError}/>
   </Provider>,
   document.getElementById('app')
 );
