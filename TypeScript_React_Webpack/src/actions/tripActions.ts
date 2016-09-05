@@ -32,6 +32,7 @@ export function loadTrips() {
         return ApiSelector.TripApi().getAllTrips().then(trips => {
             dispatch(loadTripSuccess(trips));
         }).catch (error => {
+            dispatch(ajaxCallError(error));
             throw(error);
         });
     };

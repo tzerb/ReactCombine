@@ -22,6 +22,7 @@ export interface AppProps {
   children : any; // TODO TZ
   actions?: any;
   loginInfo? : any;
+  errors : any [];
 
 }
 
@@ -50,7 +51,11 @@ class App extends React.Component<AppProps, AppState> {
             loginInfo={this.props.loginInfo}
           />
           {this.props.children}
+          <div className="container-fluid">
+            {this.props.errors}
+          </div>          
         </div>      
+
       </MuiThemeProvider> 
     );
   }
@@ -63,8 +68,9 @@ class App extends React.Component<AppProps, AppState> {
 
 function mapStateToProps(state: any, ownProps:any) {
   return {
-    loading: state.ajaxCallsInProgress > 0,
-    loginInfo : state.logins
+    loading : state.ajaxCallsInProgress > 0,
+    loginInfo : state.logins,
+    errors : state.errors
   };
 }
 function mapDispatchToProps(dispatch:any) {

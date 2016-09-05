@@ -17,7 +17,7 @@ export default class ApiHelpers {
         } else if (jqXHR.status == 404) {
             return ('The requested page not found. [404]');
         } else if (jqXHR.status == 500) {
-            let jsonValue = jQuery.parseJSON( jqXHR.responseText );
+            let jsonValue = jq.parseJSON( jqXHR.responseText );
             return ('Internal Server Error [500].\r\n' + (jsonValue && jsonValue.exceptionMessage) ? jsonValue.exceptionMessage : "");
         } else if (exception === 'parsererror') {
             return ('Requested JSON parse failed.');

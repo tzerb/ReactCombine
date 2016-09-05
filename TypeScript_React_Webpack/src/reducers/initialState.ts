@@ -3,5 +3,7 @@ export default {
   waypoints: [],
   pictures: [],
   ajaxCallsInProgress: 0,
-  logins : {userName:""}
+  logins : {userName:""},
+  errors: []
+
 };
