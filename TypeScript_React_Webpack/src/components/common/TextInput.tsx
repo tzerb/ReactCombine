@@ -1,4 +1,7 @@
 import * as React from 'react';//, {PropTypes}
+import TextField from 'material-ui/TextField';
+
+
 
 const TextInput = ({name, label, onChange, placeholder, value, error}) => {
   let wrapperClass = 'form-group';
@@ -7,6 +10,20 @@ const TextInput = ({name, label, onChange, placeholder, value, error}) => {
   }
 
   return (
+    <div>
+      <TextField
+        name={name}
+        hintText={placeholder}
+        floatingLabelText={label.toUpperCase()}
+        floatingLabelFixed={true}
+        value={value}
+        onChange={onChange}
+      />  
+    </div>
+  );
+};
+
+/*
     <div className={wrapperClass}>
       <label htmlFor={name}>{label}</label>
       <div className="field">
@@ -20,9 +37,7 @@ const TextInput = ({name, label, onChange, placeholder, value, error}) => {
         {error && <div className="alert alert-danger">{error}</div>}
       </div>
     </div>
-  );
-};
-
+*/
 // TextInput.propTypes = {
 //   name: PropTypes.string.isRequired,
 //   label: PropTypes.string.isRequired,

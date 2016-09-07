@@ -36,7 +36,7 @@ class TripListRow extends React.Component<TripListRowProps, TripListRowState> {
           <tr>
             <td><Link to={'/tripview/' + this.props.trip.tripId}>{this.props.trip.title}</Link></td>
             <td>{this.props.trip.description}</td>
-            <td><TripEditPopup trip={this.props.trip}/> | <a onClick={this.onLocalDelete}>delete</a></td>
+            <td><TripEditPopup trip={this.props.trip}/></td>
           </tr>
         );
     }

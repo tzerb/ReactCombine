@@ -19,6 +19,7 @@ export interface TripEditorState {
 export interface TripEditorContext {
   router: any;
 }
+
 class TripEditor extends React.Component<TripEditorProps, TripEditorState> {
   constructor(props:TripEditorProps, context:TripEditorContext) {
     super(props, context);
@@ -77,23 +78,29 @@ class TripEditor extends React.Component<TripEditorProps, TripEditorState> {
       });
   }
 
+  onDateTimeChange(event : any, dateTime:Date) {
+    
+  }
+
+
   redirect() {
     this.setState({saving: false});
     Alerter.success('Trip saved.');
     ((this.context) as TripEditorContext).router.push('/trips');
   }
-
+    
   render() {
     return (
       <TripForm
         trip={this.props.trip}
         onChange={this.updateTripState}
+        onDateTimeChange={this.onDateTimeChange}
         onSave={this.saveTrip}
         errors={this.state.errors}
         saving={this.state.saving}
       />
     );
-  }
+  } 
 }
 
 // TripEditor.propTypes = {

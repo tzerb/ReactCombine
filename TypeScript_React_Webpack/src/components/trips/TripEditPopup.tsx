@@ -77,8 +77,9 @@ class TripEditPopup extends React.Component<TripEditPopupProps, TripEditPopupSta
         this.saveTrip = this.saveTrip.bind(this);
         this.updateTripState = this.updateTripState.bind(this);    
 
-
+        this.updateTripDateTimeState = this.updateTripDateTimeState.bind(this);
         this.handleRequestClose = this.handleRequestClose.bind(this);
+        this.handleRequestSave = this.handleRequestSave.bind(this);
         this.handleTouchTapEdit = this.handleTouchTapEdit.bind(this);
         this.handleTouchTapDelete = this.handleTouchTapDelete.bind(this);
               
@@ -104,25 +105,31 @@ class TripEditPopup extends React.Component<TripEditPopupProps, TripEditPopupSta
 
   tripFormIsValid() {
     let formIsValid = true;
-    let errors = { title : "", errors : { dateTime : "" } };
+    let errors = { title : "", dateTime : "" };
 
     if (this.state.trip.title.length < 5) {
       errors.title = 'Title must be at least 5 characters.';
       formIsValid = false;
     }
 
-    if (!(moment(this.state.trip.dateTime, 'MM/DD/YYYY', true).isValid()))
+    if (!(moment(this.state.trip.dateTime).isValid()))
     {
       // TODO TZ do we need better name than 'DateTime'  (TripDate?)?!?
-      // errors.dateTime = 'DateTime is not valid.'; // TODO TZ
+      errors.dateTime = 'DateTime is not valid.'; // TODO TZ
       formIsValid = false;
     }
     this.setState({errors: errors});
     return formIsValid;
   }
       
+  updateTripDateTimeState(event : any, dateTime:Date)
+  {
+    const field = 'DateTime';
+    let trip = this.state.trip;
+    trip[field] = dateTime;
+    return this.setState({trip: trip});
+  }      
   updateTripState(event : any) {
-    
     const field = event.target.name;
     let trip = this.state.trip;
     trip[field] = event.target.value;
@@ -134,7 +141,6 @@ class TripEditPopup extends React.Component<TripEditPopupProps, TripEditPopupSta
     if (!this.tripFormIsValid()) {
       return;
     }
-
     this.setState({saving: true});
     this.props.tripActions.saveTrip(this.state.trip)
       .then(() => { 
@@ -154,28 +160,36 @@ class TripEditPopup extends React.Component<TripEditPopupProps, TripEditPopupSta
     });
   }
 
+  handleRequestSave(event : Event) {
+    this.setState({
+      open: false,
+    });
+    this.saveTrip(event);
+    //alert('save is not done')
+  }
+
   handleTouchTapEdit() {
-    alert('handleTouchTapEdit');
     this.setState({
       open: true,
     });
   }
+
   handleTouchTapDelete() {
   }
 
   render() {
     const standardActions = (
       <div>
-      <FlatButton
-        label="Ok"
-        primary={true}
-        onTouchTap={this.handleRequestClose}
-      />
-      <FlatButton
-        label="Cancel"
-        primary={false}
-        onTouchTap={this.handleRequestClose}
-      />   
+        <FlatButton
+          label="Cancel"
+          primary={false}
+          onTouchTap={this.handleRequestClose}
+        />   
+        <FlatButton
+          label="Ok"
+          primary={true}
+          onTouchTap={this.handleRequestSave}
+        />
       </div>   
     );
 
@@ -192,13 +206,14 @@ class TripEditPopup extends React.Component<TripEditPopupProps, TripEditPopupSta
             onRequestClose={this.handleRequestClose}
           >
 
-          <TripForm 
-              trip={this.state.trip}
-              onChange={this.updateTripState}
-              onSave={this.saveTrip}
-              errors={this.state.errors}
-              saving={this.state.saving}
-          />
+            <TripForm 
+                trip={this.state.trip}
+                onChange={this.updateTripState}
+                onDateTimeChange={this.updateTripDateTimeState}
+                onSave={this.saveTrip}
+                errors={this.state.errors}
+                saving={this.state.saving}
+            />
 
           </Dialog>
 

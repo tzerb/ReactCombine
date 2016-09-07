@@ -2,11 +2,13 @@ import * as React from 'react';
 import {PropTypes} from 'react';
 import TextInput from '../common/TextInput';
 import TextInputBig from '../common/TextInputBig';
+import DateInput from '../common/DateInput';
 
 export interface TripFormProps {
   trip : any;
   onSave(event : any) : any;
   onChange(event : any) : any;
+  onDateTimeChange(event : any, dateTime:Date) : any;
   saving : boolean;
   errors : any;
 }
@@ -26,7 +28,6 @@ export default class TripForm extends React.Component<TripFormProps, TripFormSta
   {
     return (
       <form>
-        <h1>Manage Trip </h1>
         <TextInput
           name="title"
           label="Title"
@@ -43,43 +44,16 @@ export default class TripForm extends React.Component<TripFormProps, TripFormSta
           onChange={this.props.onChange}
           error={this.props.errors.description}/>
 
-        <TextInputBig
+        <DateInput
           name="dateTime"
           label="DateTime"
           placeholder="DateTime"
           value={this.props.trip.dateTime}
-          onChange={this.props.onChange}
+          onChange={this.props.onDateTimeChange}
           error={this.props.errors.dateTime}/>
-
-        <input
-          type="submit"
-          disabled={this.props.saving}
-          value={this.props.saving ? 'Saving...' : 'Save'}
-          className="btn btn-primary"
-          onClick={this.props.onSave}/>
-          
+         
       </form>
     );
   }
 
 } 
-
-// const TripFormx = ({trip, onSave, onChange, saving, errors}) => {
-//   try {
-
-//   } catch (ex)
-//   {
-//     return (<div>Error rendering TripForm</div>); 
-//   }
-
-// };
-
-// TripForm.propTypes = {
-//   trip: PropTypes.object.isRequired,
-//   onSave: PropTypes.func.isRequired,
-//   onChange: PropTypes.func.isRequired,
-//   saving: PropTypes.bool,
-//   errors: PropTypes.object
-// };
-
-//export default TripForm;

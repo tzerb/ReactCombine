@@ -10,10 +10,24 @@
     margin-left: auto;
 }
 
-a {
-  color: green;
+.headerLink:hover{
+  color:white;
+  text-decoration: none;
   cursor: pointer;
 }
+.headerLink:visited {
+  color:white;
+  text-decoration: none;
+}
+.headerLink:link {
+  color:white;
+  text-decoration: none;
+}
+
+/*a {
+  color: green;
+  cursor: pointer;
+}*/
 
 a.active {
   color: orange;

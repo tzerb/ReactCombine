@@ -98,10 +98,9 @@ export class Header extends React.Component<HeaderProps, HeaderState>{
         <div>
         <div>
           <AppBar
-            title="Waypoint Editor"
             onLeftIconButtonTouchTap = {this.onLeftIconButtonTouchTap}
             iconElementRight={rightIcon}
-
+            title={<Link to="/" className="headerLink">Waypoint Editor</Link>}
               />
 
           <Popover style={style} 
