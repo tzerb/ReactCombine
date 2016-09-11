@@ -35,7 +35,7 @@ export interface TripViewState
 export class TripView extends React.Component<TripViewProps, TripViewState>  {
   constructor(props : TripViewProps, context : any) {
     super(props, context);
-alert('TripView ctor');
+    // alert('TripView ctor');
     this.state = {
       trip: Object.assign({}, this.props.trip),
       errors: {},
@@ -46,6 +46,9 @@ alert('TripView ctor');
 
     this.onEditPicture = this.onEditPicture.bind(this);
     this.onDeletePicture = this.onDeletePicture.bind(this);
+
+    this.saveTrip = this.saveTrip.bind(this);
+    this.deleteTrip = this.deleteTrip.bind(this);
   }
 
   componentWillReceiveProps(nextProps : TripViewProps) {
@@ -79,25 +82,51 @@ alert('TripView ctor');
             });    
   }
 
-  onDeleteWaypoint(waypoint : any)
-  {
-    this.props.waypointActions.deleteWaypoint(waypoint)
-      .then(() => { 
-              Alerter.success('Waypoint deleted');
+ 
+    deleteTrip(trip : any)
+    {
+        this.props.tripActions.deleteTrip(trip)
+            .then(() => { 
+                Alerter.success('Trip deleted');
             })
-            .catch((error:any) => {
-                Alerter.error(error);
+            .catch((error :any) => {
+                // Alerter.error(error);
+                Alerter.error('Failed to delete trip.');
+                
                 //this.setState({saving: false});
             });
-  }
+    }
+
+    saveTrip(trip : any)
+    {
+        this.props.tripActions.saveTrip(trip)
+            .then(() => { 
+                Alerter.success('Trip saved');
+            })
+            .catch((error :any) => {
+                Alerter.error('Failed to save trip.');
+            });
+    }
+
+    onDeleteWaypoint(waypoint : any)
+    {
+      this.props.waypointActions.deleteWaypoint(waypoint)
+        .then(() => { 
+                Alerter.success('Waypoint deleted');
+              })
+              .catch((error:any) => {
+                  Alerter.error(error);
+                  //this.setState({saving: false});
+              });
+    }
 
   render() {
     try {
-      return (   
-        <div className=""> 
-          <div className="row">
+      return (
+        <div className="container">
+           <div className="row">
             <TripHeader trip={this.props.trip}/>
-            <div><TripEditPopup trip={this.props.trip}/></div>
+            <div><TripEditPopup trip={this.props.trip} saveTrip={this.saveTrip}/></div>
             <div>&nbsp;</div>
             <div className="col-md-5 well">
               <WaypointList waypoints={this.props.trip.waypoints} onEdit={this.onEditWaypoint} onDelete={this.onDeleteWaypoint}/>
@@ -108,7 +137,7 @@ alert('TripView ctor');
               <PictureList pictures={this.props.trip.pictures} onEdit={this.onEditPicture} onDelete={this.onDeletePicture}/>
             </div>          
           </div>
-        </div>
+        </div>   
       );
     }
     catch(ex)
@@ -145,7 +174,7 @@ function getTripById(trips : any, tripId : any) {
 }
 
 function mapStateToProps(state : any, ownProps : TripViewProps) {
-  alert('mapStateToProps');
+  //alert('mapStateToProps');
   const tripId = ownProps.params.id; // from the path `/trip/:id`
 
   // TODO TZ - Clear these up, have a new Trip() or something like that.
@@ -161,7 +190,7 @@ function mapStateToProps(state : any, ownProps : TripViewProps) {
 }
 
 function mapDispatchToProps(dispatch : any) {
-  alert('mapDispatchToProps');
+  //alert('mapDispatchToProps');
   return {
     actions: bindActionCreators(tripActions as any, dispatch),
     waypointActions: bindActionCreators(waypointActions as any, dispatch),

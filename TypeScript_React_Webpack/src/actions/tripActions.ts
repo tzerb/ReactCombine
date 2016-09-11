@@ -41,15 +41,15 @@ export function loadTrips() {
 export function saveTrip(trip : any) {
   return function (dispatch : any, getState : any) {
     dispatch(beginAjaxCall());
-    return ApiSelector.TripApi().saveTrip(trip).then((trip) => {
-        // if (trip.tripId)
-        // {
-        //     dispatch(updateTripSuccess(trip));
-        // }
-        // else
-        // {
-        //     dispatch(createTripSuccess(trip));
-        // }
+    return ApiSelector.TripApi().saveTrip(trip).then((trip : any) => {
+        if (trip.tripId)
+        {
+            dispatch(updateTripSuccess(trip));
+        }
+        else
+        {
+            dispatch(createTripSuccess(trip));
+        }
     }).catch(error => {
       dispatch(ajaxCallError(error));
       throw(error);

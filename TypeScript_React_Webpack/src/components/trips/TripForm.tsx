@@ -24,6 +24,13 @@ export default class TripForm extends React.Component<TripFormProps, TripFormSta
     super(props, context);
   }
 
+  getTripDate() : any
+  {
+    if (this.props.trip && this.props.trip.dateTime)
+      return new Date(this.props.trip.dateTime.toString());
+    return new Date();
+  }
+
   render() 
   {
     return (
@@ -48,10 +55,9 @@ export default class TripForm extends React.Component<TripFormProps, TripFormSta
           name="dateTime"
           label="DateTime"
           placeholder="DateTime"
-          value={this.props.trip.dateTime}
+          value={this.getTripDate()}
           onChange={this.props.onDateTimeChange}
           error={this.props.errors.dateTime}/>
-         
       </form>
     );
   }

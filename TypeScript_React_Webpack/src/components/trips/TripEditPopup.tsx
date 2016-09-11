@@ -1,50 +1,23 @@
 import * as React from 'react';
 import {PropTypes} from 'react';
-import * as Modal from 'react-modal';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {bindActionCreators} from 'redux';
-import {Alerter} from '../common/Alerter';
 
 let moment = require('moment'); 
 
-import RaisedButton from 'material-ui/RaisedButton';
+// Material UI
 import Dialog from 'material-ui/Dialog';
-import {deepOrange500} from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Popover from 'material-ui/Popover';
+import RaisedButton from 'material-ui/RaisedButton';
 
+// Local includes
+import {Alerter} from '../common/Alerter';
 import TripForm from './TripForm';
-import * as tripActions from '../../actions/tripActions';
-const styles = {
-  container: {
-    textAlign: 'center',
-    paddingTop: 0,
-  },
-};
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  },
-  overlay : {
-    backgroundColor : 'rgba(127, 127, 127, 0.7'
-  }
-};
-const muiTheme = getMuiTheme({
-  palette: {
-    accent1Color: deepOrange500,
-  },
-});
+
 export interface TripEditPopupProps{
   trip:any;
-  tripActions?:any;
+  saveTrip(trip:any) : any;
 }
 
 export interface TripEditPopupState{
@@ -53,9 +26,6 @@ export interface TripEditPopupState{
   errors?: any,
   saving?: boolean;
   open? : boolean;
-  anchorEl? : any;
-  openPopOver? : boolean;
-
 }
 
 class TripEditPopup extends React.Component<TripEditPopupProps, TripEditPopupState> {
@@ -81,8 +51,6 @@ class TripEditPopup extends React.Component<TripEditPopupProps, TripEditPopupSta
         this.handleRequestClose = this.handleRequestClose.bind(this);
         this.handleRequestSave = this.handleRequestSave.bind(this);
         this.handleTouchTapEdit = this.handleTouchTapEdit.bind(this);
-        this.handleTouchTapDelete = this.handleTouchTapDelete.bind(this);
-              
     }
 
   openModal() {
@@ -93,11 +61,6 @@ class TripEditPopup extends React.Component<TripEditPopupProps, TripEditPopupSta
         saving: false
         });
   }
-
-  // afterOpenModal() {
-  //   // references are now sync'd and can be accessed.
-  //   this.refs.subtitle.style.color = '#f00';
-  // }
 
   closeModal() {
     this.setState({open: false} as TripEditPopupState);
@@ -124,11 +87,13 @@ class TripEditPopup extends React.Component<TripEditPopupProps, TripEditPopupSta
       
   updateTripDateTimeState(event : any, dateTime:Date)
   {
-    const field = 'DateTime';
+    const field = 'dateTime';
     let trip = this.state.trip;
-    trip[field] = dateTime;
+    //trip.dateTime = dateTime.toDateString();
+    trip[field] = dateTime.toDateString();
     return this.setState({trip: trip});
   }      
+
   updateTripState(event : any) {
     const field = event.target.name;
     let trip = this.state.trip;
@@ -141,17 +106,10 @@ class TripEditPopup extends React.Component<TripEditPopupProps, TripEditPopupSta
     if (!this.tripFormIsValid()) {
       return;
     }
-    this.setState({saving: true});
-    this.props.tripActions.saveTrip(this.state.trip)
-      .then(() => { 
-        this.closeModal();
-        this.setState({saving: false});
-        Alerter.success('Trip saved');
-      })
-      .catch((error : any) => {
-        Alerter.error(error);
-        this.setState({saving: false});
-      });
+
+    this.props.saveTrip(this.state.trip);
+    this.closeModal();
+
   }
 
   handleRequestClose() {
@@ -160,12 +118,11 @@ class TripEditPopup extends React.Component<TripEditPopupProps, TripEditPopupSta
     });
   }
 
-  handleRequestSave(event : Event) {
+  handleRequestSave(event : any) {
     this.setState({
       open: false,
     });
     this.saveTrip(event);
-    //alert('save is not done')
   }
 
   handleTouchTapEdit() {
@@ -174,15 +131,21 @@ class TripEditPopup extends React.Component<TripEditPopupProps, TripEditPopupSta
     });
   }
 
-  handleTouchTapDelete() {
-  }
+    getTripTitle()
+    {
+      if (this.props.trip.tripId)
+      {
+        return 'Edit Trip'
+      }
+      return 'Add Trip';
+    }
 
   render() {
     const standardActions = (
       <div>
         <FlatButton
           label="Cancel"
-          primary={false}
+          primary={true}
           onTouchTap={this.handleRequestClose}
         />   
         <FlatButton
@@ -193,15 +156,15 @@ class TripEditPopup extends React.Component<TripEditPopupProps, TripEditPopupSta
       </div>   
     );
 
+
     return (
       <span>
-        <FlatButton label="edit" primary={true} onTouchTap={this.handleTouchTapEdit} />
-        <FlatButton label="delete" primary={true} onTouchTap={this.handleTouchTapDelete} />
-        <div style={styles.container}>
-     
+        {this.props.trip.tripId && <FlatButton label="edit" primary={true} onTouchTap={this.handleTouchTapEdit} />}
+        {!this.props.trip.tripId && <FlatButton label="add" primary={true} onTouchTap={this.handleTouchTapEdit} />}
+        <div>
           <Dialog
             open={this.state.open}
-            title="Edit Trip"
+            title={this.getTripTitle()}
             actions={standardActions}
             onRequestClose={this.handleRequestClose}
           >
@@ -216,57 +179,10 @@ class TripEditPopup extends React.Component<TripEditPopupProps, TripEditPopupSta
             />
 
           </Dialog>
-
    
         </div>
       </span>
     );
   }
-
-  /*
-          <RaisedButton
-            label="Super Secret Password"
-            secondary={true}
-            onTouchTap={this.handleTouchTap}
-          />  
-  */
-    // render() {
-    //     return (
-    //         <span>TripEditPopup
-    //             <a onClick={this.openModal}>Edit</a>
-    //              <Modal
-    //                 isOpen={this.state.modalIsOpen}
-    //                 onRequestClose={this.closeModal}
-    //                 style={customStyles} >
-
-    //                 <TripForm 
-    //                     trip={this.state.trip}
-    //                     onChange={this.updateTripState}
-    //                     onSave={this.saveTrip}
-    //                     errors={this.state.errors}
-    //                     saving={this.state.saving}
-    //                 />
-    //             </Modal>               
-            
-    //         </span>
-    //     );
-    // }
 }
-
-// TripEditPopup.propTypes = {
-//   trip: PropTypes.object.isRequired,
-//   tripActions: PropTypes.object.isRequired
-// };
-
-function mapStateToProps(state : any, ownProps : any) {
-  return {
-  };
-}
-
-function mapDispatchToProps(dispatch: any) {
-  return {
-    tripActions: bindActionCreators(tripActions as any, dispatch)
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(TripEditPopup);
+export default TripEditPopup
