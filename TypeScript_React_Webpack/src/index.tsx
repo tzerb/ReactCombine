@@ -9,6 +9,8 @@ import routes from './routes';
 import configureStore from './store/configureStore';
 import {Provider} from 'react-redux';
 import {loadTrips} from './actions/tripActions';
+import {alertSuccess} from './actions/alerterActions';
+
 // import {loadWaypoints} from './actions/waypointActions';
 // import {loadPictures} from './actions/pictureActions';
 
@@ -39,6 +41,8 @@ catch(ex)
   // TODO TZ - Should handle this better.
   alert("issue loading initial data (is the server running)");
 }
+
+//store.dispatch(alertSuccess('App Started'));
 
 // export interface MainProps {  }
 // export interface MainState { open:boolean; }

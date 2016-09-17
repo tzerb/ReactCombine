@@ -5,10 +5,12 @@ import thunk from 'redux-thunk';
 let reduxImmutableStateInvariant = require('redux-immutable-state-invariant') as any;
 
 export default function configureStore(initialState? : any) {
-  return createStore(
-    rootReducer,
-    initialState,
-    applyMiddleware(thunk, reduxImmutableStateInvariant()) 
+
+  let store = createStore(rootReducer, initialState, compose(
+    applyMiddleware(thunk, reduxImmutableStateInvariant())
+    ,(window as any).devToolsExtension ? (window as any).devToolsExtension() : () => {})
   );
+
+  return store;  
 }
  

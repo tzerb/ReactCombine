@@ -1,12 +1,16 @@
 
+import * as alerterActions from '../../actions/alerterActions';
+
 export class Alerter{
     public static success(msg : string) 
     {
-        alert('Worked: ' + msg);
+        alerterActions.alertSuccess(msg);
+        // alert('Worked: ' + msg);
     }
 
     public static error(msg : string) 
     {
-        alert('Failed: ' + msg);
+        alerterActions.alertError(msg);
+        //alert('Failed: ' + msg);
     }
 }

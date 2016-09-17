@@ -5,6 +5,7 @@ import pictures from './pictureReducer';
 import logins from './loginReducer';
 import ajaxCallsInProgress from './ajaxStatusReducer';
 import errors from './ajaxErrorReducer';
+import alerter from './alerterReducer';
 
 const rootReducer = Redux.combineReducers({
   logins,
@@ -12,7 +13,8 @@ const rootReducer = Redux.combineReducers({
   waypoints,
   pictures,
   ajaxCallsInProgress,
-  errors  
+  errors,
+  alerter 
 });
 
 export default rootReducer;

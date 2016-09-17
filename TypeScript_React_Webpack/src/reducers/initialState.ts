@@ -4,6 +4,6 @@ export default {
   pictures: [],
   ajaxCallsInProgress: 0,
   logins : {userName:""},
-  errors: []
-
+  errors: [],
+  alerter: []
 };
