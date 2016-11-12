@@ -8,6 +8,7 @@ export interface LightboxViewProps
 {
     pictures : any[];
 }
+
 export interface LightboxViewState
 {
     index?:number;
@@ -26,6 +27,8 @@ export class LightboxView extends React.Component<LightboxViewProps, LightboxVie
             index: 0,
             isOpen: false        
     };
+
+    this.openLightbox = this.openLightbox.bind(this);
   }
 
     openLightbox() {

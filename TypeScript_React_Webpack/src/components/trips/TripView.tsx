@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 import {Alerter} from '../common/Alerter';
 
 //import Map5 from  '../common/Map5';
-import LightboxView from  '../common/LightboxView';
+// import LightboxView from  '../common/LightboxView';
 
 import * as tripActions from '../../actions/tripActions';
 import * as waypointActions from '../../actions/waypointActions';
@@ -133,7 +133,6 @@ export class TripView extends React.Component<TripViewProps, TripViewState>  {
               <Link to={'/waypoint/?tripId=' + this.props.trip.tripId}>Add Waypoint</Link>
             </div>
             <div className="col-md-5 well">
-              <LightboxView pictures={this.props.trip.pictures} />
               <PictureList pictures={this.props.trip.pictures} onEdit={this.onEditPicture} onDelete={this.onDeletePicture}/>
             </div>          
           </div>
@@ -192,7 +191,7 @@ function mapStateToProps(state : any, ownProps : TripViewProps) {
 function mapDispatchToProps(dispatch : any) {
   //alert('mapDispatchToProps');
   return {
-    actions: bindActionCreators(tripActions as any, dispatch),
+    tripActions: bindActionCreators(tripActions as any, dispatch),
     waypointActions: bindActionCreators(waypointActions as any, dispatch),
     pictureActions: bindActionCreators(pictureActions as any, dispatch)
   };
