@@ -3,4 +3,6 @@
     "editor.fontSize": 16,
     "editor.glyphMargin": true,
     "editor.rulers": [80, 120]
+,
+"typescript.tsdk": "./node_modules/typescript/lib"
 }
