@@ -6,11 +6,9 @@ let reduxImmutableStateInvariant = require('redux-immutable-state-invariant') as
 
 export default function configureStore(initialState? : any) {
 
-  let store = createStore(rootReducer, initialState, compose(
-    applyMiddleware(thunk, reduxImmutableStateInvariant())
-    ,(window as any).devToolsExtension ? (window as any).devToolsExtension() : () => {})
-  );
-
-  return store;  
+  return createStore(
+    rootReducer,
+    initialState,
+    applyMiddleware(thunk, reduxImmutableStateInvariant()));
 }
  
