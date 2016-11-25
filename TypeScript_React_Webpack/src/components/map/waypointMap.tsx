@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom'
 let Map = require('google-maps-react').Map;
 let InfoWindow = require('google-maps-react').InfoWindow;
 let Marker = require('google-maps-react').Marker;
- 
+let GoogleApiWrapper = require('google-maps-react').GoogleApiWrapper;
+
 var waypoints = [
   {waypointId:1, name:"11", position:{lat: 44.3, lng:-88}}, 
   {waypointId:2, name:"22", position:{lat: 44.4, lng:-88.04}}, 
@@ -14,7 +15,7 @@ var waypoints = [
 export interface WaypointMapProps
 {
     loaded:Boolean,
-    google?:any;
+    google:any;
 }
 
 export interface WaypointMapState
@@ -70,5 +71,9 @@ export class WaypointMap extends React.Component<WaypointMapProps, WaypointMapSt
   }
 }
 
-export default WaypointMap
+export default GoogleApiWrapper({
+  apiKey: 'AIzaSyCG_KuXMd6mrgAzrRcgXr91Yr6Ed03VNaw'
+}
+)(WaypointMap)
+
 

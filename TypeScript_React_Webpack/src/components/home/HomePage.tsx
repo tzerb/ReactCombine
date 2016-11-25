@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Link } from 'react-router';
-import MapX from '../map/map';
+import WaypointMap from '../map/waypointMap';
 class HomePage extends React.Component<{}, {}> {
     render() {
         return (
             <div className="jumbotron">
-            <MapX
+            <WaypointMap
             style={{width: '900px', height: '900px'}}
             />
 
