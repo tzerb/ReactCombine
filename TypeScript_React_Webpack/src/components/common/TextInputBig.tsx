@@ -1,4 +1,4 @@
-import * as React from 'react'; //, {PropTypes}
+import * as React from 'react'; 
 import TextField from 'material-ui/TextField';
 
 const TextInputBig = ({name, label, onChange, placeholder, value, error}) => {
@@ -25,29 +25,5 @@ const TextInputBig = ({name, label, onChange, placeholder, value, error}) => {
 
   );
 };
-
-/*
-    <div className={wrapperClass}>
-      <label htmlFor={name}>{label}</label>
-      <div className="field">
-        <input
-          type="text"
-          name={name}
-          className="form-control"
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange}/>
-        {error && <div className="alert alert-danger">{error}</div>}
-      </div>
-    </div>
-*/
-// TextInputBig.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   label: PropTypes.string.isRequired,
-//   onChange: PropTypes.func.isRequired,
-//   placeholder: PropTypes.string,
-//   value: PropTypes.string,
-//   error: PropTypes.string
-// };
 
 export default TextInputBig;

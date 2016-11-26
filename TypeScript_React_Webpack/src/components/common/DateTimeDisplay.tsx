@@ -20,10 +20,4 @@ const DateTimeDisplay = ({name, label, value}) => {
   );
 };
 
-// DateTimeDisplay.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   label: PropTypes.string.isRequired, 
-//   value: PropTypes.string
-// };
-
 export default DateTimeDisplay;

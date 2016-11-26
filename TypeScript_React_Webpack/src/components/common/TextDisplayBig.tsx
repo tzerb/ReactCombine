@@ -18,7 +18,7 @@ export class TextDisplayBig extends React.Component<TextDisplayBigProps, TextDis
     };
   }
   render() {
-  let wrapperClass = '';
+    let wrapperClass = '';
     return(
       <span className={wrapperClass}>
           <span>{this.props.label} : </span>
@@ -28,18 +28,5 @@ export class TextDisplayBig extends React.Component<TextDisplayBigProps, TextDis
       );
   }
 }
-
-// const TextDisplayBigOld = ({name, label, value}) => {
-//   let wrapperClass = '';
-
-//   return (
-//   );
-// };
-
-// TextDisplayBig.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   label: PropTypes.string.isRequired,
-//   value: PropTypes.string
-// };
 
 export default TextDisplayBig;

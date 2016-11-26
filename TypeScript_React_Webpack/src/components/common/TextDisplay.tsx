@@ -27,17 +27,5 @@ export class TextDisplay extends React.Component<TextDisplayProps, TextDisplaySt
       );
   }
 }
-// const TextDisplayOld = ({name, label, value}) => {
-//   let wrapperClass = '';
-
-//   return (
-//   );
-// };
-
-// TextDisplay.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   label: PropTypes.string.isRequired,
-//   value: PropTypes.string
-// };
 
 export default TextDisplay;

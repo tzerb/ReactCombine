@@ -126,26 +126,5 @@ export class Header extends React.Component<HeaderProps, HeaderState>{
       );
   }
 }
-/*
-        {
-            <IconMenu
-              iconButtonElement={
-                <IconButton><MoreVertIcon /></IconButton>
-              }
-              targetOrigin={{horizontal: 'right', vertical: 'top'}}
-              anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-            >
-              <MenuItem primaryText="Refresh" />
-              <MenuItem primaryText="Help" />
-              <MenuItem primaryText="Sign out" />
-            </IconMenu>
-          }        
-*/
-//Pull in the React Router context so router is available on this.context.router.
-
-
-// Header.propTypes = {
-//   loading: PropTypes.bool.isRequired
-// };
 
 export default Header;

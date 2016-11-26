@@ -70,31 +70,4 @@ export class LightboxView extends React.Component<LightboxViewProps, LightboxVie
   }
 }
 
-// let LightboxViewOld =  React.createClass({
-//     getInitialState: function() {
-          
-//     },
-//     openLightbox: function() {
-//         this.setState({ isOpen: true });
-//     },
-//     closeLightbox: function() {
-//         this.setState({ isOpen: false });
-//     },
-//     moveNext: function() {
-//         this.setState({ index: (this.state.index + 1) % images.length });
-//     },
-//     movePrev: function() {
-//         this.setState({ index: (this.state.index + images.length - 1) % images.length });
-//     },
-//     render: function() {
-    
-
-//     }
-
-// });
-
-// LightboxView.propTypes = {
-//   pictures: PropTypes.array.isRequired
-// };
-
 export default LightboxView;

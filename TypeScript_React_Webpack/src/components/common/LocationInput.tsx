@@ -55,21 +55,5 @@ export class LocationInput extends React.Component<LocationInputProps, LocationI
     );
   }
 }
-// const LocationInputOld = ({name, label, onChange, placeholder, latitude, longitude, error}) => {
-
-//   return (
-
-//   );
-// };
-
-// LocationInput.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   label: PropTypes.string.isRequired,
-//   onChange: PropTypes.func.isRequired,
-//   placeholder: PropTypes.string,
-//   latitude: PropTypes.number,
-//   longitude: PropTypes.number,
-//   error: PropTypes.string
-// };
 
 export default LocationInput;

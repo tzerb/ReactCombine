@@ -44,18 +44,4 @@ export class DateTime extends React.Component<DateTimeProps, DateTimeState>  {
   }
 }
 
-// const DateTimeOld = ({name, label, onChange, placeholder, value, error}) => {
-//   return (
-//   );
-// };
-
-// DateTime.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   label: PropTypes.string.isRequired,
-//   onChange: PropTypes.func.isRequired,
-//   placeholder: PropTypes.string,
-//   value: PropTypes.string,
-//   error: PropTypes.string
-// };
-
 export default DateTime;

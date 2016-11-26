@@ -30,18 +30,4 @@ export class DateDisplay extends React.Component<DateDisplayProps, DateDisplaySt
     }
 }
 
-// const DateDisplayOld = ({name, label, value}) => {
-//   let wrapperClass = '';
-
-//   let date = moment(value).format('MM/DD/YYYY');
-//   return (
-//   );
-// };
-
-// DateDisplay.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   label: PropTypes.string.isRequired,
-//   value: PropTypes.string
-// };
-
 export default DateDisplay;

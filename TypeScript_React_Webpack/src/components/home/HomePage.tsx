@@ -22,8 +22,11 @@ class HomePage extends React.Component<{}, {}> {
                 initialCenter ={{ lat: 44.5, lng: -88 }}
                 />
 
-                <h1>Waypoint Editor</h1>
-                <p>React, Redux and React Router in ES6 for ultra-responsive web apps.</p>
+                <h1>Random Wayfarer</h1>
+                <p>
+                Manage your fishing data here.  Easily upload your depth finder data and pictures to
+                stitch together a rich history of your favorite hobby.
+                </p>
                 <Link to="about" className="btn btn-primary btn-lg">Learn more</Link>
             </div>
         );
