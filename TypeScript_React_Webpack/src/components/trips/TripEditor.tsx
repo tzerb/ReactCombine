@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as tripActions from '../../actions/tripActions';
 import TripForm from './TripForm';
-import {Alerter} from './common/Alerter';
+import {Alerter} from '../common/Alerter';
 
 export interface TripEditorProps {
   trip:any;

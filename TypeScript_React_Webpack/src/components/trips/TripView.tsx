@@ -4,9 +4,6 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Alerter} from '../common/Alerter';
 
-//import Map5 from  '../common/Map5';
-// import LightboxView from  '../common/LightboxView';
-
 import * as tripActions from '../../actions/tripActions';
 import * as waypointActions from '../../actions/waypointActions';
 import * as pictureActions from '../../actions/pictureActions';
@@ -33,10 +30,10 @@ export interface TripViewState
 {
 
 }
+
 export class TripView extends React.Component<TripViewProps, TripViewState>  {
   constructor(props : TripViewProps, context : any) {
     super(props, context);
-    // alert('TripView ctor');
     this.state = {
       trip: Object.assign({}, this.props.trip),
       errors: {},

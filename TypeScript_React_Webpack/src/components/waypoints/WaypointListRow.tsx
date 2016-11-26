@@ -4,7 +4,7 @@ import WaypointEditPopup from './WaypointEditPopup';
 
 export interface WaypointListRowProps
 {
-  waypoint:any;
+  waypoint : any;
   onEdit(waypoint:any) : any;
   onDelete(waypoint:any) : any;
 }
@@ -37,7 +37,6 @@ class WaypointListRow extends React.Component<WaypointListRowProps, WaypointList
       this.props.onDelete(this.props.waypoint);
     }
 
-    // <WaypointEditPopup waypoint={this.props.waypoint}/> <a onClick = {this.onLocalEdit}>edit</a> <a onClick = {this.onLocalDelete}>delete</a> 
     render() {
         return (
           <tr>
@@ -49,11 +48,5 @@ class WaypointListRow extends React.Component<WaypointListRowProps, WaypointList
         );
     }
 }
-
-// WaypointListRow.propTypes = {
-//   waypoint: PropTypes.object.isRequired,
-//   onEdit : PropTypes.func.isRequired,
-//   onDelete : PropTypes.func.isRequired
-// };
 
 export default WaypointListRow;

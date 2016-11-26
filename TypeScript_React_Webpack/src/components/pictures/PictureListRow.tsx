@@ -45,36 +45,5 @@ export class PictureListRow extends React.Component<PictureListRowProps, Picture
     );
   }
 }
-// class PictureListRowOld extends React.Component {
-//     constructor(props, context)    {
-//         super(props, context);
 
-//         this.onLocalEdit = this.onLocalEdit.bind(this);
-//         this.onLocalDelete = this.onLocalDelete.bind(this);
-
-//     }
-
-//     onLocalEdit()
-//     {
-//       this.props.onEdit(this.props.picture);
-//     }
-
-//     onLocalDelete()
-//     {
-//       this.props.onDelete(this.props.picture);
-//     }
-// //"http://localhost:15989//Pictures/Image?pictureId="+
-//     render() {
-//         return (
-
-//         );
-//     }
-// }
-
-// PictureListRow.propTypes = {
-//   picture: PropTypes.object.isRequired,
-//   onEdit : PropTypes.func.isRequired,
-//   onDelete : PropTypes.func.isRequired
-// };
- 
 export default PictureListRow;

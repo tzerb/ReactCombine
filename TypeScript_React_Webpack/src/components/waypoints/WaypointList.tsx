@@ -34,10 +34,4 @@ const WaypointList = ({waypoints, onEdit, onDelete}) => {
   );
 };
 
-// WaypointList.propTypes = {
-//   waypoints: PropTypes.array.isRequired,
-//   onEdit: PropTypes.func,
-//   onDelete: PropTypes.func
-// };
-
 export default WaypointList;

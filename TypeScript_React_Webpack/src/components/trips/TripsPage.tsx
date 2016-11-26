@@ -77,11 +77,6 @@ class TripsPage extends React.Component<TripsPageProps, TripsPageState> {
     }
 }
 
-// TripPage.propTypes = {
-//     trips: PropTypes.array.isRequired,
-//     actions: PropTypes.object
-// };
-
 function mapStateToProps(state : any, ownProps:any)
 {
     return {

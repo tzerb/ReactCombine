@@ -26,7 +26,6 @@ export default function tripReducer(state = initialState.trips, action : any) {
         ];
 
         case types.DELETE_TRIP_WAYPOINT_SUCCESS:
-        //let newState = [...state];
         return [
             ...state
         ];

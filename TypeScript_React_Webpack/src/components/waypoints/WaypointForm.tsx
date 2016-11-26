@@ -71,25 +71,5 @@ export class WaypointForm extends React.Component<WaypointFormProps, WaypointFor
     );
   }
 }
-// const WaypointFormOLD = ({waypoint, onSave, onChange, saving, errors}) => {
-//   try {
- 
-//     return (
-
-//     );
-//   } catch (ex)
-//   {
-//     return (<div>Error rendering WaypointForm</div>); 
-//   }
-
-// };
-
-// WaypointForm.propTypes = {
-//   waypoint: PropTypes.object.isRequired,
-//   onSave: PropTypes.func.isRequired,
-//   onChange: PropTypes.func.isRequired,
-//   saving: PropTypes.bool,
-//   errors: PropTypes.object
-// };
 
 export default WaypointForm;

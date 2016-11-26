@@ -156,9 +156,6 @@ class WaypointEditPopup extends React.Component<WaypointEditPopupProps, Waypoint
         />
       </div>   
     );
-
-    //alert(this.props.Waypoint);
-    //alert(this.props.Waypoint.waypointId);
     
     return (
       <span>

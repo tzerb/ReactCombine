@@ -63,25 +63,5 @@ export class PictureForm extends React.Component<PictureFormProps, PictureFormSt
     );
   }
 }
-// const PictureFormOld = ({picture, onSave, onChange, saving, errors}) => {
-//   try {
-
-//     return (
-//     );        // TODO TZ Add lat/long here?
-
-//   } catch (ex)
-//   {
-//     return (<div>Error rendering PictureForm</div>); 
-//   }
-
-// };
-
-// PictureForm.propTypes = {
-//   picture: PropTypes.object.isRequired,
-//   onSave: PropTypes.func.isRequired,
-//   onChange: PropTypes.func.isRequired,
-//   saving: PropTypes.bool,
-//   errors: PropTypes.object
-// };
 
 export default PictureForm;

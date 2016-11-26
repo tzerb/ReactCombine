@@ -36,15 +36,5 @@ export class PictureList extends React.Component<PictureListProps, PictureListSt
     );
   }
 }
-// const PictureListOld = ({pictures, onDelete, onEdit}) => {
-//   return (
-//   );
-// };
-//
-// PictureList.propTypes = {
-//   pictures: PropTypes.array.isRequired,
-//   onDelete : PropTypes.func.isRequired,
-//   onEdit : PropTypes.func.isRequired
-// };
 
 export default PictureList;
