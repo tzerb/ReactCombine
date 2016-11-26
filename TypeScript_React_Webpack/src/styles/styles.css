@@ -50,3 +50,8 @@ nav {
   border:2;
   background: url('../Images/marker.png')
 }
+
+.tripMap {
+  height: 400px;
+  
+}

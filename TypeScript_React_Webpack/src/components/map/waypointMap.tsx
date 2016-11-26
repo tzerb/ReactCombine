@@ -47,7 +47,7 @@ export class WaypointMap extends React.Component<WaypointMapProps, WaypointMapSt
     this.props.loaded ?
       <Map google={this.props.google} 
           onClick={this.onClick}
-          style={{width: '90%', height: '90%', position: 'relative'}}
+          style={{width: '86%', height: '400px', position: 'relative'}}
           className={'map'}
           zoom={9} 
           initialCenter={this.props.initialCenter}

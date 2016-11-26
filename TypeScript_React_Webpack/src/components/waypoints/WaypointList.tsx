@@ -1,5 +1,7 @@
 import React, {PropTypes} from 'react';
 import WaypointListRow from './WaypointListRow';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+
 
 const WaypointList = ({waypoints, onEdit, onDelete}) => {
   return (
@@ -15,21 +17,36 @@ const WaypointList = ({waypoints, onEdit, onDelete}) => {
 
     {waypoints && (waypoints.length>0) &&
 
-      <table className="table">
-          <thead>
-          <tr>
-            <th width="140"></th>
-            <th>Title</th>
-          </tr>
-          </thead>
-          <tbody>
-            {waypoints.map((waypoint:any) =>
-              <WaypointListRow key={waypoint.waypointId} waypoint={waypoint} onEdit={onEdit} onDelete={onDelete}/>
-            )} 
-          </tbody>
-        </table>
-    }
 
+  <Table
+      height={"300"}
+      fixedHeader={true}
+      fixedFooter={true}  
+  >
+    <TableHeader 
+      displaySelectAll={false}
+      adjustForCheckbox={false}
+    >
+      <TableRow>
+        <TableHeaderColumn>ID</TableHeaderColumn>
+        <TableHeaderColumn>Name</TableHeaderColumn>
+        <TableHeaderColumn>Description</TableHeaderColumn>
+      </TableRow>
+    </TableHeader>
+    <TableBody
+      displayRowCheckbox={false}
+    >
+      {waypoints.map((waypoint:any) =>
+        <TableRow>
+          <TableRowColumn>{waypoint.waypointId}</TableRowColumn>
+          <TableRowColumn>{waypoint.name}</TableRowColumn>
+          <TableRowColumn>{waypoint.description}</TableRowColumn>
+        </TableRow>
+      )}     
+    </TableBody>
+  </Table>        
+    }
+ 
     </div>
   );
 };

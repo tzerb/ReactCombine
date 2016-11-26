@@ -7,6 +7,7 @@ import {Alerter} from '../common/Alerter';
 import * as tripActions from '../../actions/tripActions';
 import * as waypointActions from '../../actions/waypointActions';
 import * as pictureActions from '../../actions/pictureActions';
+import PictureSingleLineGrid from '../pictures/PictureSingleLineGrid'
 
 import TripHeader from './TripHeader';
 
@@ -16,6 +17,8 @@ import ApiConfig from '../../api/ApiConfig';
 import ApiHelpers from '../../api/ApiHelpers';
 import TripEditPopup from './TripEditPopup';
 import WaypointEditPopup from '../waypoints/WaypointEditPopup'
+import TripMap from './TripMap';
+
 
 export interface TripViewProps
 {
@@ -145,10 +148,45 @@ export class TripView extends React.Component<TripViewProps, TripViewState>  {
       };
     }
 
+/*
+        this.props.trip.pictures.count ?        
+          : <div>No Pics</div>
+
+*/
   render() {
+    //alert(this.props.trip.pictures.length);
     try {
       return (
         <div className="container">
+
+          <div className="row">
+            <div className="col-md-12 well">
+              <TripHeader trip={this.props.trip}/>
+            </div>
+          </div>
+        
+          {this.props.trip.pictures.length > 0 ?
+            <div className="row">
+              <div className="col-md-12 well">
+                <PictureSingleLineGrid pictures={this.props.trip.pictures}/>
+              </div>
+            </div>
+            : <div></div>        
+          }
+          
+          <div className="row">
+            <div className="col-md-12 well">
+              <div className="tripMap">
+                <TripMap/>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-12 well">
+              <WaypointList waypoints={this.props.trip.waypoints} onEdit={this.onEditWaypoint} onDelete={this.onDeleteWaypoint}/>
+            </div>      
+          </div>
+
            <div className="row">
             <TripHeader trip={this.props.trip}/>
             <div><TripEditPopup trip={this.props.trip} saveTrip={this.saveTrip}/></div>
@@ -157,10 +195,7 @@ export class TripView extends React.Component<TripViewProps, TripViewState>  {
               <WaypointList waypoints={this.props.trip.waypoints} onEdit={this.onEditWaypoint} onDelete={this.onDeleteWaypoint}/>
               <WaypointEditPopup Waypoint={this.getDefaultWaypoint()} saveWaypoint={this.saveWaypoint} />
               <Link to={'/waypoint/?tripId=' + this.props.trip.tripId}>Add Waypoint</Link>
-            </div>
-            <div className="col-md-5 well">
-              <PictureList pictures={this.props.trip.pictures} onEdit={this.onEditPicture} onDelete={this.onDeletePicture}/>
-            </div>          
+            </div>    
           </div>
         </div>   
       );
