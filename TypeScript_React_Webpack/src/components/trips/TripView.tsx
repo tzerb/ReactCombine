@@ -18,6 +18,7 @@ import PictureList from '../pictures/PictureList';
 import ApiConfig from '../../api/ApiConfig';
 import ApiHelpers from '../../api/ApiHelpers';
 import TripEditPopup from './TripEditPopup';
+import WaypointEditPopup from '../waypoints/WaypointEditPopup'
 
 export interface TripViewProps
 {
@@ -49,6 +50,8 @@ export class TripView extends React.Component<TripViewProps, TripViewState>  {
 
     this.saveTrip = this.saveTrip.bind(this);
     this.deleteTrip = this.deleteTrip.bind(this);
+
+    this.saveWaypoint = this.saveWaypoint.bind(this);
   }
 
   componentWillReceiveProps(nextProps : TripViewProps) {
@@ -108,6 +111,10 @@ export class TripView extends React.Component<TripViewProps, TripViewState>  {
             });
     }
 
+    saveWaypoint(waypoint : any)
+    {
+      alert('todo saveWaypoint');
+    }
     onDeleteWaypoint(waypoint : any)
     {
       this.props.waypointActions.deleteWaypoint(waypoint)
@@ -120,6 +127,27 @@ export class TripView extends React.Component<TripViewProps, TripViewState>  {
               });
     }
 
+    getDefaultWaypoint()
+    {
+        return       {
+        "latitude": 43.905967197,
+        "longitude": -88.428131393,
+        "waypointId": 88,
+        "dateTime": "2016-07-07T18:49:39",
+        "description": "DEFAULT WAYPOINT",
+        "name": "DEFAULT WAYPOINT",
+        "depth": 0,
+        "type": 0,
+        "visible": false,
+        "tripId": 1,
+        "waypointFileId": 1,
+        "createdBy": "default",
+        "createdDate": "2016-08-04T13:17:05.873",
+        "modifiedBy": "default",
+        "modifiedDate": "2016-08-04T13:17:05.873"
+      };
+    }
+
   render() {
     try {
       return (
@@ -130,6 +158,7 @@ export class TripView extends React.Component<TripViewProps, TripViewState>  {
             <div>&nbsp;</div>
             <div className="col-md-5 well">
               <WaypointList waypoints={this.props.trip.waypoints} onEdit={this.onEditWaypoint} onDelete={this.onDeleteWaypoint}/>
+              <WaypointEditPopup Waypoint={this.getDefaultWaypoint()} saveWaypoint={this.saveWaypoint} />
               <Link to={'/waypoint/?tripId=' + this.props.trip.tripId}>Add Waypoint</Link>
             </div>
             <div className="col-md-5 well">

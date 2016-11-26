@@ -20,9 +20,13 @@ class WaypointListRow extends React.Component<WaypointListRowProps, WaypointList
 
         this.onLocalEdit = this.onLocalEdit.bind(this);
         this.onLocalDelete = this.onLocalDelete.bind(this);
-
+        this.saveWaypoint = this.saveWaypoint.bind(this);
     }
 
+    saveWaypoint ()
+    {
+      alert('saveWaypoint.  Probably needs to propagate up.');
+    }
     onLocalEdit()
     {
       this.props.onEdit(this.props.waypoint);
@@ -33,11 +37,12 @@ class WaypointListRow extends React.Component<WaypointListRowProps, WaypointList
       this.props.onDelete(this.props.waypoint);
     }
 
+    // <WaypointEditPopup waypoint={this.props.waypoint}/> <a onClick = {this.onLocalEdit}>edit</a> <a onClick = {this.onLocalDelete}>delete</a> 
     render() {
         return (
           <tr>
-            <td>
-              <WaypointEditPopup waypoint={this.props.waypoint}/> <a onClick = {this.onLocalEdit}>edit</a> <a onClick = {this.onLocalDelete}>delete</a>
+            <td><WaypointEditPopup Waypoint={this.props.waypoint} saveWaypoint={this.saveWaypoint} />
+
             </td>
             <td>{this.props.waypoint.name}</td>
           </tr>

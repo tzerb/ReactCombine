@@ -6,16 +6,12 @@ let InfoWindow = require('google-maps-react').InfoWindow;
 let Marker = require('google-maps-react').Marker;
 let GoogleApiWrapper = require('google-maps-react').GoogleApiWrapper;
 
-var waypoints = [
-  {waypointId:1, name:"11", position:{lat: 44.3, lng:-88}}, 
-  {waypointId:2, name:"22", position:{lat: 44.4, lng:-88.04}}, 
-  {waypointId:4, name:"44", position:{lat: 44.3, lng:-88.04}}, 
-  {waypointId:3, name:"33", position:{lat: 44.4, lng:-88}}];
-
 export interface WaypointMapProps
 {
     loaded:Boolean,
     google:any;
+    waypoints : any[];
+    initialCenter : any; //todo tz position
 }
 
 export interface WaypointMapState
@@ -34,7 +30,6 @@ export class WaypointMap extends React.Component<WaypointMapProps, WaypointMapSt
   }
 
   onMarkerClick(props : any, marker : any, event : any){
-    //debugger;
     alert('onMarkerClick ' + props.name);
   }
 
@@ -55,9 +50,9 @@ export class WaypointMap extends React.Component<WaypointMapProps, WaypointMapSt
           style={{width: '90%', height: '90%', position: 'relative'}}
           className={'map'}
           zoom={9} 
-          initialCenter={{ lat: 44.5, lng: -88 }}
+          initialCenter={this.props.initialCenter}
           >
-        {waypoints.map((wp) =>
+        {this.props.waypoints.map((wp) =>
           <Marker key={wp.waypointId} 
             onClick={this.onMarkerClick}
             onMouseOver={this.onMouseOver}
@@ -65,7 +60,7 @@ export class WaypointMap extends React.Component<WaypointMapProps, WaypointMapSt
             position={wp.position} />
         )} 
       </Map>
-      : <div>here</div>
+      : <div>Map loading...</div>
 
     );
   }
