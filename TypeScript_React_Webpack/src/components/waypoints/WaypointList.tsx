@@ -19,7 +19,7 @@ const WaypointList = ({waypoints, onEdit, onDelete}) => {
 
 
   <Table
-      height={"300"}
+      height={"300px"}
       fixedHeader={true}
       fixedFooter={true}  
   >
@@ -37,7 +37,7 @@ const WaypointList = ({waypoints, onEdit, onDelete}) => {
       displayRowCheckbox={false}
     >
       {waypoints.map((waypoint:any) =>
-        <TableRow>
+        <TableRow key={waypoint.waypointId}>
           <TableRowColumn>{waypoint.waypointId}</TableRowColumn>
           <TableRowColumn>{waypoint.name}</TableRowColumn>
           <TableRowColumn>{waypoint.description}</TableRowColumn>

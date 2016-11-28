@@ -9,7 +9,6 @@ import routes from './routes';
 import configureStore from './store/configureStore';
 import {Provider} from 'react-redux';
 import {loadTrips} from './actions/tripActions';
-import {alertSuccess} from './actions/alerterActions';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './styles/styles.css'; //Webpack can import CSS files too!

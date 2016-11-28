@@ -45,14 +45,17 @@ export class PictureSingleLineGrid extends React.Component<PictureSingleLineGrid
 
     }
 
+    // TODO TZ delete also causes this to be called.  
+    // I want to put up a full sized image when clicked 
     imageClicked()
     {
-        alert('imageClicked');
+        //alert('imageClicked');
     }
 
-    deleteClicked()
+    deleteClicked(event:any)
     {
-        alert('deleteClicked');
+        event.preventDefault();
+        alert('deleteClicked3');
     }
 
     render() {
