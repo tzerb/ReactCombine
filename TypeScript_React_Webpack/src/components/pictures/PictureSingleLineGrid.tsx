@@ -43,7 +43,6 @@ export class PictureSingleLineGrid extends React.Component<PictureSingleLineGrid
     constructor(props:PictureSingleLineGridProps, context : any)    {
         super(props, context);
 
-        this.menuClicked = this.menuClicked.bind(this);
         this.handleRequestClose = this.handleRequestClose.bind(this);
         this.deleteClicked = this.deleteClicked.bind(this);
         this.editClicked = this.editClicked.bind(this);
@@ -53,24 +52,6 @@ export class PictureSingleLineGrid extends React.Component<PictureSingleLineGrid
             menuOpen: false 
         };
 
-    }
-    menuClicked2(event:any)
-    {
-        alert('menuClicked2 - ' + event.key);
-        //debugger;
-    }
-    menuClicked(event:any)
-    {
-        //debugger;
-        event.preventDefault();
-        alert('menuClicked - ' + event);
-        this.setState( 
-            {
-                menuOpen : true,
-                anchorEl : event.currentTarget,
-                menuTargetKey : event.key 
-            } 
-        );
     }
 
     handleRequestClose()
