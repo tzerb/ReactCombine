@@ -1,14 +1,14 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+
 import ApiSelector from '../../api/ApiSelector';
+import PictureGridItem from './PictureGridItem';
 
-import {GridList, GridTile} from 'material-ui/GridList';
-import IconButton from 'material-ui/IconButton';
-import StarBorder from 'material-ui/svg-icons/toggle/star-border';
-import SvgIcon from 'material-ui/SvgIcon';
-
-import DeleteForeverIcon from '../svg/DeleteForever'
+import GridList from 'material-ui/GridList';
+import Popover from 'material-ui/Popover';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
 
 const styles = { 
   root: {
@@ -33,25 +33,64 @@ export interface PictureSingleLineGridProps
 
 export interface PictureSingleLineGridState
 {
+    menuOpen? : boolean;
+    anchorEl? : any; 
+    menuTargetKey? : number;
+    activePicture? : any;
 }
 
 export class PictureSingleLineGrid extends React.Component<PictureSingleLineGridProps, PictureSingleLineGridState>  {
     constructor(props:PictureSingleLineGridProps, context : any)    {
         super(props, context);
 
-    }
+        this.menuClicked = this.menuClicked.bind(this);
+        this.handleRequestClose = this.handleRequestClose.bind(this);
+        this.deleteClicked = this.deleteClicked.bind(this);
+        this.editClicked = this.editClicked.bind(this);
+        this.menuClickedX = this.menuClickedX.bind(this);
 
-    // TODO TZ delete also causes this to be called.  
-    // I want to put up a full sized image when clicked 
-    imageClicked()
-    {
-        //alert('imageClicked');
-    }
+        this.state = {
+            menuOpen: false 
+        };
 
-    deleteClicked(event:any)
+    }
+    menuClicked2(event:any)
     {
+        alert('menuClicked2 - ' + event.key);
+        //debugger;
+    }
+    menuClicked(event:any)
+    {
+        //debugger;
         event.preventDefault();
-        alert('deleteClicked3');
+        alert('menuClicked - ' + event);
+        this.setState( 
+            {
+                menuOpen : true,
+                anchorEl : event.currentTarget,
+                menuTargetKey : event.key 
+            } 
+        );
+    }
+
+    handleRequestClose()
+    {
+        this.setState( {menuOpen : false} );
+    }
+
+    editClicked(a:any) {
+        this.setState( {menuOpen : false} );
+        alert('edit ' + this.state.activePicture.pictureId);
+    }
+
+    deleteClicked(a:any) {
+        this.setState( {menuOpen : false} );
+        alert('delete ' + this.state.activePicture.pictureId);
+    }
+
+    menuClickedX(pic:any, el:any)
+    {
+        this.setState( {activePicture : pic, menuOpen : true, anchorEl : el} );
     }
 
     render() {
@@ -59,17 +98,22 @@ export class PictureSingleLineGrid extends React.Component<PictureSingleLineGrid
             <div style={styles.root}>
                 <GridList style={styles.gridList} cols={2.2}>
                 {this.props.pictures.map((pic) => (
-                    <GridTile 
-                    onClick={this.imageClicked}
-                    key={pic.pictureId}
-                    title={pic.description}
-                    actionIcon={<IconButton onClick={this.deleteClicked}><DeleteForeverIcon color="rgb(220, 220, 220)" /></IconButton>}
-                    titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
-                    >
-                    <img src={ApiSelector.Picture(pic.pictureId)} />
-                    </GridTile>
+                    <PictureGridItem key={pic.pictureId } picture={pic} onMenu={this.menuClickedX}/>
                 ))}
                 </GridList>
+
+                <Popover
+                    open={this.state.menuOpen}
+                    anchorEl={this.state.anchorEl}
+                    anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+                    targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                    onRequestClose={this.handleRequestClose}
+                >                
+                    <Menu>
+                        <MenuItem value={1} primaryText="Edit" onClick={this.editClicked} />
+                        <MenuItem value={2} primaryText="Delete" onClick={this.deleteClicked} />
+                    </Menu>                
+                </Popover>
             </div>
           )
     }
