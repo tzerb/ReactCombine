@@ -52,5 +52,9 @@ nav {
 
 .tripMap {
   height: 500px;
-  width:50%;
+}
+
+.map {
+  height:400px;
+  width:400px;
 }

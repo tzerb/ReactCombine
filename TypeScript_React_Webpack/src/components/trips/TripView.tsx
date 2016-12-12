@@ -175,10 +175,8 @@ export class TripView extends React.Component<TripViewProps, TripViewState>  {
           }
           
           <div className="row">
-            <div className="col-md-12 well">
-              <div className="tripMap">
-                <TripMap/>
-              </div>
+            <div className="col-md-12 well tripMap">
+                <TripMap waypoints = {this.props.trip.waypoints} pictures = {this.props.trip.pictures}/>
             </div>
           </div>
           <div className="row">
@@ -187,16 +185,6 @@ export class TripView extends React.Component<TripViewProps, TripViewState>  {
             </div>      
           </div>
 
-           <div className="row">
-            <TripHeader trip={this.props.trip}/>
-            <div><TripEditPopup trip={this.props.trip} saveTrip={this.saveTrip}/></div>
-            <div>&nbsp;</div>
-            <div className="col-md-5 well">
-              <WaypointList waypoints={this.props.trip.waypoints} onEdit={this.onEditWaypoint} onDelete={this.onDeleteWaypoint}/>
-              <WaypointEditPopup Waypoint={this.getDefaultWaypoint()} saveWaypoint={this.saveWaypoint} />
-              <Link to={'/waypoint/?tripId=' + this.props.trip.tripId}>Add Waypoint</Link>
-            </div>    
-          </div>
         </div>   
       );
     }
